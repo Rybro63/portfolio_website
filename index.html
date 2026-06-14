@@ -403,6 +403,7 @@
         <span class="tag">Pandas</span>
         <span class="tag">NumPy</span>
         <span class="tag">Scikit-Learn</span>
+        <span class="tag">Claude API</span>
       </div>
     </div>
     <div class="skill-card">
@@ -410,20 +411,21 @@
       <div class="skill-tags">
         <span class="tag">Git</span>
         <span class="tag">AWS</span>
+        <span class="tag">AWS SAM</span>
+        <span class="tag">DynamoDB</span>
         <span class="tag">Linux</span>
         <span class="tag">VS Code</span>
         <span class="tag">IntelliJ</span>
-        <span class="tag">Eclipse</span>
       </div>
     </div>
     <div class="skill-card">
       <div class="skill-card-title">Domains</div>
       <div class="skill-tags">
         <span class="tag">Machine Learning</span>
+        <span class="tag">LLM Integration</span>
         <span class="tag">REST APIs</span>
+        <span class="tag">Serverless</span>
         <span class="tag">Cloud (AWS)</span>
-        <span class="tag">OOP Design</span>
-        <span class="tag">CI/CD</span>
         <span class="tag">Testing</span>
       </div>
     </div>
@@ -441,6 +443,30 @@
     <div class="project-card fade-in">
       <div>
         <div class="project-number">01</div>
+        <h3 class="project-title">AI Symptom Checker API</h3>
+      </div>
+      <div class="project-stack">
+        <span class="stack-pill">Python</span>
+        <span class="stack-pill">FastAPI</span>
+        <span class="stack-pill">Claude API</span>
+        <span class="stack-pill">AWS Lambda</span>
+        <span class="stack-pill">DynamoDB</span>
+        <span class="stack-pill">SAM</span>
+      </div>
+      <ul class="project-bullets">
+        <li>Serverless AI triage API deployed on <strong>AWS Lambda + API Gateway</strong>, integrating the <strong>Claude API</strong> to generate structured clinical assessments — triage level, ranked differential, and per-condition confidence scores</li>
+        <li>Engineered a <strong>confidence-threshold inference layer</strong> that suppresses unreliable output below a tunable bound, while guaranteeing emergency triage signals are never withheld — prioritizing safety over completeness</li>
+        <li>Single-table <strong>DynamoDB</strong> design with a GSI for cursor-paginated history; entire stack provisioned as infrastructure-as-code via <strong>AWS SAM</strong></li>
+        <li>Pytest suite of <strong>12 tests</strong> with mocked LLM responses and in-memory DynamoDB (moto), covering the threshold invariant, validation, and malformed-output handling</li>
+      </ul>
+      <a href="https://dsfk8nnzl6.execute-api.us-east-1.amazonaws.com/docs" class="project-link" target="_blank" rel="noopener">
+        live demo · /docs ↗
+      </a>
+    </div>
+
+    <div class="project-card fade-in">
+      <div>
+        <div class="project-number">02</div>
         <h3 class="project-title">Sentiment Analysis REST API</h3>
       </div>
       <div class="project-stack">
@@ -462,7 +488,7 @@
 
     <div class="project-card fade-in">
       <div>
-        <div class="project-number">02</div>
+        <div class="project-number">03</div>
         <h3 class="project-title">iTunes Media Search App</h3>
       </div>
       <div class="project-stack">
@@ -549,7 +575,7 @@
 </section>
 
 <footer>
-  built by ryvath mattey · 2025
+  built by ryvath mattey · 2026
 </footer>
 
 <script>
