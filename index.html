@@ -443,24 +443,24 @@
     <div class="project-card fade-in">
       <div>
         <div class="project-number">01</div>
-        <h3 class="project-title">AI Symptom Checker API</h3>
+        <h3 class="project-title">AI Symptom Checker — Full-Stack</h3>
       </div>
       <div class="project-stack">
-        <span class="stack-pill">Python</span>
+        <span class="stack-pill">React</span>
         <span class="stack-pill">FastAPI</span>
         <span class="stack-pill">Claude API</span>
         <span class="stack-pill">AWS Lambda</span>
         <span class="stack-pill">DynamoDB</span>
-        <span class="stack-pill">SAM</span>
+        <span class="stack-pill">Vercel</span>
       </div>
       <ul class="project-bullets">
-        <li>Serverless AI triage API deployed on <strong>AWS Lambda + API Gateway</strong>, integrating the <strong>Claude API</strong> to generate structured clinical assessments — triage level, ranked differential, and per-condition confidence scores</li>
+        <li>Full-stack AI triage app — a <strong>React</strong> frontend on Vercel calling a serverless <strong>FastAPI</strong> backend on <strong>AWS Lambda + API Gateway</strong> — integrating the <strong>Claude API</strong> to generate structured assessments with triage level, ranked differential, and per-condition confidence scores</li>
         <li>Engineered a <strong>confidence-threshold inference layer</strong> that suppresses unreliable output below a tunable bound, while guaranteeing emergency triage signals are never withheld — prioritizing safety over completeness</li>
-        <li>Single-table <strong>DynamoDB</strong> design with a GSI for cursor-paginated history; entire stack provisioned as infrastructure-as-code via <strong>AWS SAM</strong></li>
+        <li>Single-table <strong>DynamoDB</strong> design with a GSI for cursor-paginated history; backend provisioned as infrastructure-as-code via <strong>AWS SAM</strong></li>
         <li>Pytest suite of <strong>12 tests</strong> with mocked LLM responses and in-memory DynamoDB (moto), covering the threshold invariant, validation, and malformed-output handling</li>
       </ul>
-      <a href="https://dsfk8nnzl6.execute-api.us-east-1.amazonaws.com/docs" class="project-link" target="_blank" rel="noopener">
-        live demo · /docs ↗
+      <a href="https://symptom-checker-frontend-nine.vercel.app/" class="project-link" target="_blank" rel="noopener">
+        live demo ↗
       </a>
     </div>
 
