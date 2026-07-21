@@ -413,6 +413,7 @@
         <span class="tag">AWS</span>
         <span class="tag">AWS SAM</span>
         <span class="tag">DynamoDB</span>
+        <span class="tag">Cognito</span>
         <span class="tag">Linux</span>
         <span class="tag">VS Code</span>
         <span class="tag">IntelliJ</span>
@@ -451,13 +452,14 @@
         <span class="stack-pill">Claude API</span>
         <span class="stack-pill">AWS Lambda</span>
         <span class="stack-pill">DynamoDB</span>
+        <span class="stack-pill">Cognito</span>
         <span class="stack-pill">Vercel</span>
       </div>
       <ul class="project-bullets">
-        <li>Full-stack AI triage app — a <strong>React</strong> frontend on Vercel calling a serverless <strong>FastAPI</strong> backend on <strong>AWS Lambda + API Gateway</strong> — integrating the <strong>Claude API</strong> to generate structured assessments with triage level, ranked differential, and per-condition confidence scores</li>
+        <li>Full-stack, multi-user AI triage app — a <strong>React</strong> frontend on Vercel calling a serverless <strong>FastAPI</strong> backend on <strong>AWS Lambda + API Gateway</strong> — integrating the <strong>Claude API</strong> to generate structured assessments with triage level, ranked differential, and per-condition confidence scores</li>
+        <li>Secured the API with <strong>AWS Cognito</strong> and a JWT authorizer, scoping every read and write to the authenticated user so each account sees only its own private history</li>
         <li>Engineered a <strong>confidence-threshold inference layer</strong> that suppresses unreliable output below a tunable bound, while guaranteeing emergency triage signals are never withheld — prioritizing safety over completeness</li>
-        <li>Single-table <strong>DynamoDB</strong> design with a GSI for cursor-paginated history; backend provisioned as infrastructure-as-code via <strong>AWS SAM</strong></li>
-        <li>Pytest suite of <strong>12 tests</strong> with mocked LLM responses and in-memory DynamoDB (moto), covering the threshold invariant, validation, and malformed-output handling</li>
+        <li>Single-table <strong>DynamoDB</strong> design with a GSI for per-user, cursor-paginated history; backend provisioned as infrastructure-as-code via <strong>AWS SAM</strong>, validated by a <strong>14-test</strong> pytest suite</li>
       </ul>
       <a href="https://symptom-checker-frontend-nine.vercel.app/" class="project-link" target="_blank" rel="noopener">
         live demo ↗
