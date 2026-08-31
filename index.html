@@ -387,6 +387,7 @@
       <div class="skill-card-title">Languages</div>
       <div class="skill-tags">
         <span class="tag">Python</span>
+        <span class="tag">Go</span>
         <span class="tag">Java</span>
         <span class="tag">C / C++</span>
         <span class="tag">JavaScript</span>
@@ -411,6 +412,7 @@
       <div class="skill-card-title">Developer Tools</div>
       <div class="skill-tags">
         <span class="tag">Git</span>
+        <span class="tag">Docker</span>
         <span class="tag">AWS</span>
         <span class="tag">AWS SAM</span>
         <span class="tag">DynamoDB</span>
@@ -427,6 +429,8 @@
         <span class="tag">Computer Vision</span>
         <span class="tag">LLM Integration</span>
         <span class="tag">REST APIs</span>
+        <span class="tag">Concurrency</span>
+        <span class="tag">Systems Programming</span>
         <span class="tag">Serverless</span>
         <span class="tag">Cloud (AWS)</span>
         <span class="tag">Testing</span>
@@ -446,6 +450,27 @@
     <div class="project-card fade-in">
       <div>
         <div class="project-number">01</div>
+        <h3 class="project-title">batchserve — Dynamic Batching Inference Server</h3>
+      </div>
+      <div class="project-stack">
+        <span class="stack-pill">Go</span>
+        <span class="stack-pill">Concurrency</span>
+        <span class="stack-pill">Systems</span>
+      </div>
+      <ul class="project-bullets">
+        <li>Request-batching inference server in <strong>Go</strong> (standard library only) that amortizes a fixed per-call backend cost across batched requests, raising goodput <strong>12.8×</strong> (23 → 299 req/s) and eliminating timeouts at 300 req/s</li>
+        <li>Implemented <strong>bounded-queue admission control</strong>, deadline dropping of abandoned work, and size-or-time flushing — mapping each outcome to a distinct status so callers separate "never attempted" (503) from "backend failed" (500)</li>
+        <li>Showed queue depth dictates failure mode: a 1024-slot queue timed out 3,271 requests at 23 req/s, while a 16-slot queue shed load in microseconds and held 125 req/s at stable p99 — <strong>5.4× more useful work</strong></li>
+        <li>Validated with a <strong>44-test suite</strong> under Go's race detector, adding a regression test reproducing a metrics data race the existing concurrency test couldn't surface</li>
+      </ul>
+      <a href="https://github.com/Rybro63/batchserve" class="project-link" target="_blank" rel="noopener">
+        github.com/Rybro63/batchserve ↗
+      </a>
+    </div>
+
+    <div class="project-card fade-in">
+      <div>
+        <div class="project-number">02</div>
         <h3 class="project-title">AI Symptom Checker — Full-Stack</h3>
       </div>
       <div class="project-stack">
@@ -470,7 +495,7 @@
 
     <div class="project-card fade-in">
       <div>
-        <div class="project-number">02</div>
+        <div class="project-number">03</div>
         <h3 class="project-title">Sentiment Analysis REST API</h3>
       </div>
       <div class="project-stack">
@@ -488,23 +513,6 @@
       <a href="https://sentiment-api-dayn.onrender.com" class="project-link" target="_blank" rel="noopener">
         sentiment-api-dayn.onrender.com ↗
       </a>
-    </div>
-
-    <div class="project-card fade-in">
-      <div>
-        <div class="project-number">03</div>
-        <h3 class="project-title">iTunes Media Search App</h3>
-      </div>
-      <div class="project-stack">
-        <span class="stack-pill">Java</span>
-        <span class="stack-pill">JavaFX</span>
-        <span class="stack-pill">iTunes API</span>
-      </div>
-      <ul class="project-bullets">
-        <li>Responsive desktop application that <strong>retrieves and renders 20 media results per query</strong> from the Apple iTunes Search API with real-time progress indicators</li>
-        <li>Async image loading that <strong>reduced UI blocking by ~30%</strong>, improving perceived performance and interaction flow</li>
-        <li>Refactored into <strong>5+ modular OOP classes</strong>, cutting debugging time and increasing long-term maintainability</li>
-      </ul>
     </div>
 
   </div>
