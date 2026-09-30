@@ -198,6 +198,10 @@
   }
   .project-card:hover { border-color: rgba(123,97,255,0.4); transform: translateY(-3px); }
   .project-card:hover::before { opacity: 1; }
+  .project-card.featured { grid-column: 1 / -1; }
+  .project-card.featured .project-bullets { display: grid; grid-template-columns: 1fr 1fr; column-gap: 2rem; row-gap: 10px; }
+  .project-links { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: auto; }
+  .project-links .project-link { margin-top: 0; }
   .project-number {
     font-family: var(--mono); font-size: 11px; color: var(--muted);
     letter-spacing: 0.1em;
@@ -307,6 +311,7 @@
     section { padding: 5rem 1.5rem; }
     .about-grid { grid-template-columns: 1fr; gap: 3rem; }
     .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured .project-bullets { grid-template-columns: 1fr; }
     .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
     #hero { padding: 7rem 1.5rem 5rem; }
   }
@@ -332,9 +337,10 @@
   <div class="hero-glow"></div>
   <div class="hero-content fade-in">
 <h1 class="hero-name">Ryvath <em>Mattey</em></h1>
-    <p class="hero-sub">Computer Science student at UGA building APIs, ML systems, and full-stack applications — with a passion for clean code and real-world impact.</p>
+    <p class="hero-sub">Computer Science student at UGA building backend systems, AI pipelines, and full-stack apps, with a focus on software that keeps working when things break.</p>
     <div class="hero-cta">
       <a href="#projects" class="btn-primary">View my work</a>
+      <a href="https://github.com/Rybro63" class="btn-ghost" target="_blank" rel="noopener">GitHub</a>
       <a href="mailto:ryvath.mattey@gmail.com" class="btn-ghost">Get in touch</a>
     </div>
   </div>
@@ -348,18 +354,18 @@
   <h2 class="section-title fade-in">A little about me</h2>
   <div class="about-grid">
     <div class="about-text fade-in">
-      <p>I'm a <strong>Computer Science student at the University of Georgia</strong> (Class of 2027), minoring in Microbiology. I'm drawn to the intersection of software and science — whether that's building production APIs, training ML models, or working with healthcare data.</p>
-      <p>My background spans backend development, machine learning, and clinical documentation — giving me a unique perspective on building software that handles <strong>real, sensitive, and high-stakes data responsibly</strong>.</p>
-      <p>Outside of code, I've spent time as a medical scribe, which shaped how I think about accuracy, attention to detail, and systems under pressure.</p>
+      <p>I'm a <strong>Computer Science student at the University of Georgia</strong> (Class of 2027), minoring in Microbiology. I like building backend systems and AI pipelines, and I'm especially interested in software that handles <strong>sensitive, high-stakes data</strong>, like healthcare records.</p>
+      <p>Before I studied software seriously, I worked as a medical scribe, documenting 30 to 40 patient visits per shift. My latest project, <strong>Chartwise</strong>, automates that same job: it drafts clinical notes with an LLM, checks them for errors, and sends them to a clinician for review.</p>
+      <p>I also spent a year as an undergraduate researcher in UGA's VIPR AI/ML and Robotics lab, working on object detection for farm robotics.</p>
     </div>
     <div class="about-details fade-in">
       <div class="detail-item">
         <div class="label">Education</div>
-        <div class="value">B.S. Computer Science — UGA, Athens GA<br />Minor in Microbiology · Expected May 2027</div>
+        <div class="value">B.S. Computer Science, University of Georgia, Athens GA<br />Minor in Microbiology · Aug 2023 – May 2027</div>
       </div>
       <div class="detail-item">
         <div class="label">Coursework</div>
-        <div class="value">Software Development · Data Structures · Theory of Computation · Discrete Math · Linear Algebra</div>
+        <div class="value">Data Structures · Algorithms · Software Development · Computer Architecture · Database Management · Theory of Computation · Discrete Math · Linear Algebra</div>
       </div>
       <div class="detail-item">
         <div class="label">Certifications</div>
@@ -386,54 +392,57 @@
     <div class="skill-card">
       <div class="skill-card-title">Languages</div>
       <div class="skill-tags">
+        <span class="tag">Java</span>
         <span class="tag">Python</span>
         <span class="tag">Go</span>
-        <span class="tag">Java</span>
-        <span class="tag">C / C++</span>
+        <span class="tag">TypeScript</span>
         <span class="tag">JavaScript</span>
-        <span class="tag">SQL</span>
+        <span class="tag">SQL (PostgreSQL)</span>
+        <span class="tag">C / C++</span>
         <span class="tag">HTML / CSS</span>
       </div>
     </div>
     <div class="skill-card">
       <div class="skill-card-title">Frameworks &amp; Libraries</div>
       <div class="skill-tags">
-        <span class="tag">React</span>
         <span class="tag">Spring Boot</span>
+        <span class="tag">React</span>
         <span class="tag">FastAPI</span>
-        <span class="tag">Pandas</span>
-        <span class="tag">NumPy</span>
-        <span class="tag">Scikit-Learn</span>
+        <span class="tag">gRPC</span>
         <span class="tag">PyTorch</span>
+        <span class="tag">Scikit-Learn</span>
+        <span class="tag">HAPI FHIR</span>
         <span class="tag">Claude API</span>
       </div>
     </div>
     <div class="skill-card">
-      <div class="skill-card-title">Developer Tools</div>
+      <div class="skill-card-title">Infrastructure</div>
       <div class="skill-tags">
-        <span class="tag">Git</span>
-        <span class="tag">Docker</span>
-        <span class="tag">AWS</span>
-        <span class="tag">AWS SAM</span>
+        <span class="tag">Kafka</span>
+        <span class="tag">Redis</span>
         <span class="tag">DynamoDB</span>
-        <span class="tag">Cognito</span>
-        <span class="tag">Linux</span>
-        <span class="tag">VS Code</span>
-        <span class="tag">IntelliJ</span>
+        <span class="tag">Docker</span>
+        <span class="tag">Kubernetes</span>
+        <span class="tag">Terraform</span>
+        <span class="tag">AWS EKS</span>
+        <span class="tag">AWS RDS</span>
+        <span class="tag">AWS Lambda</span>
+        <span class="tag">AWS Cognito</span>
       </div>
     </div>
     <div class="skill-card">
-      <div class="skill-card-title">Domains</div>
+      <div class="skill-card-title">Tools &amp; Testing</div>
       <div class="skill-tags">
-        <span class="tag">Machine Learning</span>
-        <span class="tag">Computer Vision</span>
-        <span class="tag">LLM Integration</span>
-        <span class="tag">REST APIs</span>
-        <span class="tag">Concurrency</span>
-        <span class="tag">Systems Programming</span>
-        <span class="tag">Serverless</span>
-        <span class="tag">Cloud (AWS)</span>
-        <span class="tag">Testing</span>
+        <span class="tag">Git</span>
+        <span class="tag">GitHub Actions</span>
+        <span class="tag">Prometheus</span>
+        <span class="tag">Grafana</span>
+        <span class="tag">OpenTelemetry</span>
+        <span class="tag">Jaeger</span>
+        <span class="tag">Testcontainers</span>
+        <span class="tag">pytest</span>
+        <span class="tag">k6</span>
+        <span class="tag">Linux</span>
       </div>
     </div>
   </div>
@@ -447,31 +456,64 @@
   <h2 class="section-title fade-in">Things I've built</h2>
   <div class="projects-grid">
 
-    <div class="project-card fade-in">
+    <div class="project-card featured fade-in">
       <div>
         <div class="project-number">01</div>
-        <h3 class="project-title">batchserve — Dynamic Batching Inference Server</h3>
+        <h3 class="project-title">Chartwise: AI Clinical Documentation Pipeline</h3>
       </div>
+      <p class="project-desc">A clinician uploads a visit transcript. Chartwise pulls the patient's history from a FHIR server, has an LLM draft a SOAP note, safety-checks the draft, and queues it for review. The approved note is saved back to the patient's record, and every view, edit, and approval is audited. All patient data is synthetic, generated with Synthea.</p>
       <div class="project-stack">
+        <span class="stack-pill">Java</span>
+        <span class="stack-pill">Spring Boot</span>
+        <span class="stack-pill">PostgreSQL</span>
+        <span class="stack-pill">Kafka</span>
+        <span class="stack-pill">Python</span>
         <span class="stack-pill">Go</span>
-        <span class="stack-pill">Concurrency</span>
-        <span class="stack-pill">Systems</span>
+        <span class="stack-pill">gRPC</span>
+        <span class="stack-pill">Redis</span>
+        <span class="stack-pill">React</span>
+        <span class="stack-pill">TypeScript</span>
+        <span class="stack-pill">HAPI FHIR</span>
+        <span class="stack-pill">Kubernetes</span>
+        <span class="stack-pill">Terraform</span>
       </div>
       <ul class="project-bullets">
-        <li>Request-batching inference server in <strong>Go</strong> (standard library only) that amortizes a fixed per-call backend cost across batched requests, raising goodput <strong>12.8×</strong> (23 → 299 req/s) and eliminating timeouts at 300 req/s</li>
-        <li>Implemented <strong>bounded-queue admission control</strong>, deadline dropping of abandoned work, and size-or-time flushing — mapping each outcome to a distinct status so callers separate "never attempted" (503) from "backend failed" (500)</li>
-        <li>Showed queue depth dictates failure mode: a 1024-slot queue timed out 3,271 requests at 23 req/s, while a 16-slot queue shed load in microseconds and held 125 req/s at stable p99 — <strong>5.4× more useful work</strong></li>
-        <li>Validated with a <strong>44-test suite</strong> under Go's race detector, adding a regression test reproducing a metrics data race the existing concurrency test couldn't surface</li>
+        <li>Built an <strong>event-driven pipeline</strong> that drafts SOAP notes from visit transcripts with the <strong>Claude API</strong>, queues them for clinician review, and files approved notes to a FHIR server</li>
+        <li>Used a <strong>transactional outbox</strong> and <strong>idempotent Kafka consumers</strong> so no encounter is lost or processed twice; killing the worker mid-stream across 200 encounters left <strong>0 lost and 0 duplicated</strong> notes</li>
+        <li>Built a <strong>Go gRPC gateway</strong> with Redis token-bucket rate limiting, jittered retries, and a circuit breaker; in a simulated 60-second LLM outage the breaker opened in <strong>8s</strong> and the backlog drained with <strong>0 failed drafts</strong></li>
+        <li>Load-tested with <strong>k6</strong> against a 30s drafting SLO: 3 workers kept <strong>100% of 1,029 drafts</strong> within it (using a fake LLM for repeatable runs); a live Claude run exposed head-of-line blocking, and per-partition sliding commits cut p50 from <strong>26.4s to 18.7s</strong></li>
+        <li>Wrote a <strong>medication safety check</strong> that caught 100% of 500 injected drug and allergy errors (drawn from its own drug list) with <strong>0 false positives</strong> on 400 clean drafts; encrypted PHI at rest and made the audit log append-only</li>
+        <li>Deployed with <strong>GitHub Actions CI</strong>, <strong>Kubernetes</strong> (kind, and AWS EKS via Terraform), and <strong>OpenTelemetry</strong> tracing across all 3 services</li>
       </ul>
-      <a href="https://github.com/Rybro63/batchserve" class="project-link" target="_blank" rel="noopener">
-        github.com/Rybro63/batchserve ↗
-      </a>
+      <div class="project-links">
+        <a href="https://github.com/Rybro63/chartwise" class="project-link" target="_blank" rel="noopener">github.com/Rybro63/chartwise ↗</a>
+      </div>
     </div>
 
     <div class="project-card fade-in">
       <div>
         <div class="project-number">02</div>
-        <h3 class="project-title">AI Symptom Checker — Full-Stack</h3>
+        <h3 class="project-title">batchserve: Dynamic Batching Inference Server</h3>
+      </div>
+      <div class="project-stack">
+        <span class="stack-pill">Go</span>
+        <span class="stack-pill">Concurrency</span>
+      </div>
+      <ul class="project-bullets">
+        <li>Built a request-batching inference server in <strong>Go</strong> (standard library only) that amortizes a fixed per-call backend cost across batched requests, raising goodput <strong>12.8×</strong> (23 → 299 req/s) and eliminating timeouts at 300 req/s</li>
+        <li>Implemented <strong>bounded-queue admission control</strong>, deadline dropping of abandoned work, and size-or-time flushing, mapping each outcome to a distinct status so callers separate “never attempted” (503) from “backend failed” (500)</li>
+        <li>Showed queue depth dictates failure mode: a 1024-slot queue timed out 3,271 requests at 23 req/s, while a 16-slot queue shed load in microseconds and held 125 req/s at stable p99, <strong>5.4× more useful work</strong></li>
+        <li>Validated with a <strong>44-test suite</strong> under Go's race detector, adding a regression test reproducing a metrics data race the existing concurrency test could not surface</li>
+      </ul>
+      <div class="project-links">
+        <a href="https://github.com/Rybro63/batchserve" class="project-link" target="_blank" rel="noopener">github.com/Rybro63/batchserve ↗</a>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div>
+        <div class="project-number">03</div>
+        <h3 class="project-title">AI Symptom Checker (Full-Stack)</h3>
       </div>
       <div class="project-stack">
         <span class="stack-pill">React</span>
@@ -483,19 +525,19 @@
         <span class="stack-pill">Vercel</span>
       </div>
       <ul class="project-bullets">
-        <li>Full-stack, multi-user AI triage app — a <strong>React</strong> frontend on Vercel calling a serverless <strong>FastAPI</strong> backend on <strong>AWS Lambda + API Gateway</strong> — integrating the <strong>Claude API</strong> to generate structured assessments with triage level, ranked differential, and per-condition confidence scores</li>
-        <li>Secured the API with <strong>AWS Cognito</strong> and a JWT authorizer, scoping every read and write to the authenticated user so each account sees only its own private history</li>
-        <li>Engineered a <strong>confidence-threshold inference layer</strong> that suppresses unreliable output below a tunable bound, while guaranteeing emergency triage signals are never withheld — prioritizing safety over completeness</li>
-        <li>Single-table <strong>DynamoDB</strong> design with a GSI for per-user, cursor-paginated history; backend provisioned as infrastructure-as-code via <strong>AWS SAM</strong>, validated by a <strong>14-test</strong> pytest suite</li>
+        <li>Built and deployed a full-stack, multi-user AI triage app: <strong>React</strong> on Vercel calling a serverless <strong>FastAPI</strong> backend on <strong>AWS Lambda and API Gateway</strong>, integrating the <strong>Claude API</strong> for structured assessments across 4 triage levels</li>
+        <li>Secured the API with <strong>AWS Cognito</strong> and a JWT authorizer, scoping every read and write to the authenticated user so each account sees only its own private history; verified isolation with dedicated tests</li>
+        <li>Engineered a <strong>confidence-threshold inference layer</strong> suppressing unreliable output below a 0.35 bound while guaranteeing emergency triage signals are never withheld, prioritizing patient safety over completeness</li>
+        <li>Designed a single-table <strong>DynamoDB</strong> store with a GSI for per-user, cursor-paginated history; validated with a <strong>14-test</strong> pytest suite using mocked LLM responses and an in-memory DynamoDB</li>
       </ul>
-      <a href="https://symptom-checker-frontend-nine.vercel.app/" class="project-link" target="_blank" rel="noopener">
-        live demo ↗
-      </a>
+      <div class="project-links">
+        <a href="https://symptom-checker-frontend-nine.vercel.app/" class="project-link" target="_blank" rel="noopener">live demo ↗</a>
+      </div>
     </div>
 
     <div class="project-card fade-in">
       <div>
-        <div class="project-number">03</div>
+        <div class="project-number">04</div>
         <h3 class="project-title">Sentiment Analysis REST API</h3>
       </div>
       <div class="project-stack">
@@ -510,9 +552,9 @@
         <li>Pytest suite of <strong>20+ tests</strong> covering happy-path, edge cases, and schema validation via monkeypatching</li>
         <li>CI-style Render pipeline for <strong>automated model retraining</strong> on every deploy, plus an interactive demo UI served from the API</li>
       </ul>
-      <a href="https://sentiment-api-dayn.onrender.com" class="project-link" target="_blank" rel="noopener">
-        sentiment-api-dayn.onrender.com ↗
-      </a>
+      <div class="project-links">
+        <a href="https://sentiment-api-dayn.onrender.com" class="project-link" target="_blank" rel="noopener">sentiment-api-dayn.onrender.com ↗</a>
+      </div>
     </div>
 
   </div>
@@ -533,12 +575,12 @@
         <div class="exp-loc">Athens, GA</div>
       </div>
       <div>
-        <div class="exp-role">Undergraduate Researcher — VIPR AI/ML &amp; Robotics</div>
+        <div class="exp-role">Undergraduate Researcher, VIPR AI/ML and Robotics</div>
         <ul class="exp-bullets">
-          <li>Developed Python scripts integrating robotic hardware with REST APIs and <strong>PyTorch</strong>, enabling real-time monitoring and adaptive decision-making in farm environments</li>
-          <li>Designed an autonomous robotic workflow using <strong>YOLOv8</strong> for floor-egg detection, reducing manual labor and improving poultry management efficiency</li>
-          <li>Benchmarked YOLOv5–YOLOv12 across five model sizes, achieving <strong>98.4% detection accuracy (mAP50)</strong> with YOLOv12x while cutting training time by <strong>88%</strong> using YOLOv8n</li>
-          <li>Automated RGB–depth alignment and dataset preprocessing, ensuring consistent training data across <strong>1,000+ poultry frames</strong></li>
+          <li>Developed <strong>Python</strong> scripts integrating robotic hardware with REST APIs and <strong>PyTorch</strong>, enabling real-time monitoring and adaptive decision-making in farm environments</li>
+          <li>Designed an autonomous robotic workflow using <strong>YOLOv8</strong> for floor-egg detection, reducing manual labor</li>
+          <li>Benchmarked YOLOv5–YOLOv12 across five model sizes, achieving <strong>98.4% detection accuracy (mAP50)</strong> with YOLOv12x while cutting training time <strong>88%</strong> using YOLOv8n</li>
+          <li>Automated RGB–depth alignment and dataset preprocessing in Python across <strong>1,000+ poultry frames</strong></li>
         </ul>
       </div>
     </div>
@@ -569,8 +611,7 @@
         <div class="exp-role">Medical Scribe Intern</div>
         <ul class="exp-bullets">
           <li>Transcribed and managed <strong>30–40 patient records per shift</strong> with near-zero documentation errors using QTC and Optum LHI EHR systems</li>
-          <li>Upheld strict <strong>HIPAA compliance</strong> across all documentation workflows, supporting providers across multiple primary care settings</li>
-          <li>Streamlined clinical documentation turnaround through efficient, accurate real-time transcription</li>
+          <li>Upheld strict <strong>HIPAA compliance</strong> across all documentation workflows for providers in multiple primary care settings</li>
         </ul>
       </div>
     </div>
@@ -585,7 +626,7 @@
   <div class="section-label fade-in" style="text-align:center;">05 / contact</div>
   <h2 class="section-title fade-in" style="text-align:center;">Let's connect</h2>
   <div class="contact-card fade-in">
-    <p>I'm actively looking for internship and new grad opportunities in software engineering, ML, or cloud. If you think I'd be a good fit — or just want to chat — reach out.</p>
+    <p>I'm looking for new grad and early-career roles in software engineering, especially backend, infrastructure, and AI systems. If you think I'd be a good fit, reach out.</p>
     <div class="contact-links">
       <a href="mailto:ryvath.mattey@gmail.com" class="contact-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
@@ -594,6 +635,10 @@
       <a href="https://linkedin.com/in/ryvath-mattey-710974297" target="_blank" rel="noopener" class="contact-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
         LinkedIn
+      </a>
+      <a href="https://github.com/Rybro63" target="_blank" rel="noopener" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        GitHub
       </a>
       <a href="tel:7706177730" class="contact-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.22 1.18 2 2 0 012.22 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.08 6.08l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
