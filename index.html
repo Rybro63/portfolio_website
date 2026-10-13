@@ -4,6 +4,14 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Ryvath Mattey — Portfolio</title>
+<meta name="description" content="Ryvath Mattey, Computer Science student at UGA building backend systems, AI pipelines, and full-stack apps, with a focus on software that keeps working when things break." />
+<meta name="theme-color" content="#0a0a0f" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Ryvath Mattey — Portfolio" />
+<meta property="og:description" content="Backend systems, AI pipelines, and full-stack apps, built to keep working when things break." />
+<meta name="twitter:card" content="summary" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0f'/%3E%3Ctext x='16' y='21.5' text-anchor='middle' font-family='monospace' font-size='15' font-weight='600' fill='%2300d4aa'%3Erm%3C/text%3E%3C/svg%3E" />
+<noscript><style>.fade-in { opacity: 1 !important; transform: none !important; }</style></noscript>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <style>
@@ -56,6 +64,13 @@
     transition: color 0.2s;
   }
   .nav-links a:hover { color: var(--text); }
+  .nav-toggle {
+    display: none;
+    font-family: var(--mono); font-size: 12px; color: var(--text);
+    letter-spacing: 0.08em;
+    background: transparent; border: 1px solid var(--border2);
+    border-radius: 6px; padding: 5px 12px; cursor: pointer;
+  }
 
   /* ── HERO ────────────────────────────────────────── */
   #hero {
@@ -180,6 +195,16 @@
     background: var(--surface2); border: 1px solid var(--border);
     padding: 4px 12px; border-radius: 6px;
   }
+  button.tag {
+    font-family: var(--sans); line-height: inherit; cursor: pointer;
+    border-color: rgba(123,97,255,0.45);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  button.tag:hover { border-color: var(--accent); color: var(--text); }
+  .skills-hint {
+    font-family: var(--mono); font-size: 11px; color: var(--muted);
+    letter-spacing: 0.08em; margin-top: 1.25rem;
+  }
 
   /* ── PROJECTS ────────────────────────────────────── */
   .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
@@ -187,7 +212,7 @@
     background: var(--surface); border: 1px solid var(--border);
     border-radius: 14px; padding: 2rem;
     display: flex; flex-direction: column; gap: 1rem;
-    transition: border-color 0.25s, transform 0.2s;
+    transition: border-color 0.25s, transform 0.2s, opacity 0.25s;
     position: relative; overflow: hidden;
   }
   .project-card::before {
@@ -199,9 +224,25 @@
   .project-card:hover { border-color: rgba(123,97,255,0.4); transform: translateY(-3px); }
   .project-card:hover::before { opacity: 1; }
   .project-card.featured { grid-column: 1 / -1; }
+  .project-card.match { border-color: rgba(123,97,255,0.5); }
+  .project-card.match::before { opacity: 1; }
+  .projects-grid .project-card.dimmed { opacity: 0.3; } /* must beat .fade-in.visible */
+  .project-filter {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    margin: -2rem 0 1.5rem; padding: 0.7rem 1rem;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    font-size: 14px; color: var(--muted);
+  }
+  .project-filter[hidden] { display: none; }
+  .project-filter strong { color: var(--text); font-weight: 500; }
+  .project-filter-clear {
+    font-family: var(--mono); font-size: 12px; color: var(--accent2);
+    background: transparent; border: 0; cursor: pointer;
+  }
   .project-card.featured .project-bullets { display: grid; grid-template-columns: 1fr 1fr; column-gap: 2rem; row-gap: 10px; }
   .project-links { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: auto; }
   .project-links .project-link { margin-top: 0; }
+  .project-link-note { flex-basis: 100%; font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: -0.5rem; }
   .project-number {
     font-family: var(--mono); font-size: 11px; color: var(--muted);
     letter-spacing: 0.1em;
@@ -235,6 +276,51 @@
     transition: gap 0.2s;
   }
   .project-link:hover { gap: 10px; }
+
+  /* ── PIPELINE DIAGRAM ────────────────────────────── */
+  .pipeline {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1.25rem;
+  }
+  .pipeline-hint {
+    font-family: var(--mono); font-size: 11px; color: var(--muted);
+    letter-spacing: 0.08em; margin-bottom: 1rem;
+  }
+  .pipeline-stages { list-style: none; display: flex; gap: 22px; }
+  .pipeline-stages li { flex: 1; min-width: 0; position: relative; }
+  .pipeline-stages li + li::before {
+    content: '→'; position: absolute; left: -17px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 13px; color: var(--muted);
+  }
+  .stage {
+    width: 100%; height: 100%; text-align: left; cursor: pointer;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 0.6rem 0.7rem;
+    color: var(--text); font-family: var(--sans);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .stage:hover { border-color: var(--border2); }
+  .stage[aria-pressed="true"] { border-color: var(--accent); background: rgba(123,97,255,0.12); }
+  .stage-tech {
+    display: block; font-family: var(--mono); font-size: 10px; color: var(--accent2);
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .stage-name { display: block; font-size: 13px; font-weight: 500; line-height: 1.3; margin-top: 2px; }
+  .pipeline-detail {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+    margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border);
+  }
+  .pipeline-detail[hidden] { display: none; }
+  .pipeline-detail h4 {
+    font-family: var(--mono); font-size: 11px; font-weight: 400; color: var(--accent2);
+    letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.4rem;
+  }
+  .pipeline-detail p { font-size: 13.5px; color: #9e9bb8; line-height: 1.6; }
+  .pipeline-detail strong { color: var(--text); font-weight: 500; }
+  .pipeline-detail code { font-family: var(--mono); font-size: 12px; color: rgba(200,195,255,0.9); }
+
+  button:focus-visible, a:focus-visible { outline: 2px solid var(--accent2); outline-offset: 2px; }
 
   /* ── EXPERIENCE ──────────────────────────────────── */
   .exp-list { display: flex; flex-direction: column; gap: 0; }
@@ -305,9 +391,37 @@
   }
   .fade-in.visible { opacity: 1; transform: translateY(0); }
 
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; }
+    .fade-in { opacity: 1; transform: none; }
+    .btn-primary:hover, .btn-ghost:hover, .project-card:hover { transform: none; }
+  }
+
+  /* The 7-stage pipeline row gets too narrow before the main mobile breakpoint */
+  @media (max-width: 1000px) {
+    .pipeline-stages { flex-direction: column; gap: 20px; }
+    .pipeline-stages li + li::before { content: '↓'; left: 1rem; top: -17px; transform: none; }
+    .stage { display: flex; align-items: baseline; gap: 0.75rem; }
+    .stage-tech { width: 4.5rem; flex-shrink: 0; }
+    .stage-name { margin-top: 0; }
+  }
+
   @media (max-width: 768px) {
     nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+    .nav-links {
+      display: none;
+      position: absolute; top: 100%; left: 0; right: 0;
+      flex-direction: column; gap: 0;
+      padding: 0.5rem 1.5rem 1rem;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a { display: block; padding: 0.7rem 0; font-size: 15px; }
+    .pipeline { padding: 1rem; }
+    .pipeline-detail { grid-template-columns: 1fr; gap: 1rem; }
     section { padding: 5rem 1.5rem; }
     .about-grid { grid-template-columns: 1fr; gap: 3rem; }
     .projects-grid { grid-template-columns: 1fr; }
@@ -322,7 +436,8 @@
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#hero">rm.dev</a>
-  <ul class="nav-links">
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">menu</button>
+  <ul class="nav-links" id="nav-links">
     <li><a href="#about">about</a></li>
     <li><a href="#skills">skills</a></li>
     <li><a href="#projects">projects</a></li>
@@ -340,6 +455,7 @@
     <p class="hero-sub">Computer Science student at UGA building backend systems, AI pipelines, and full-stack apps, with a focus on software that keeps working when things break.</p>
     <div class="hero-cta">
       <a href="#projects" class="btn-primary">View my work</a>
+      <a href="resume.pdf" class="btn-ghost" target="_blank" rel="noopener">Resume (PDF)</a>
       <a href="https://github.com/Rybro63" class="btn-ghost" target="_blank" rel="noopener">GitHub</a>
       <a href="mailto:ryvath.mattey@gmail.com" class="btn-ghost">Get in touch</a>
     </div>
@@ -446,6 +562,7 @@
       </div>
     </div>
   </div>
+  <p class="skills-hint" hidden>Click a highlighted skill to see the projects that use it.</p>
 </section>
 
 <div class="divider"></div>
@@ -454,14 +571,58 @@
 <section id="projects">
   <div class="section-label fade-in">03 / projects</div>
   <h2 class="section-title fade-in">Things I've built</h2>
+  <div class="project-filter" hidden>
+    <span>Projects using <strong class="project-filter-name"></strong></span>
+    <button class="project-filter-clear" type="button">show all ×</button>
+  </div>
   <div class="projects-grid">
 
-    <div class="project-card featured fade-in">
+    <div class="project-card featured fade-in" data-tech="Java|Python|Go|TypeScript|SQL (PostgreSQL)|Spring Boot|React|gRPC|HAPI FHIR|Claude API|Kafka|Redis|Docker|Kubernetes|Terraform|AWS EKS|AWS RDS|GitHub Actions|Prometheus|Grafana|OpenTelemetry|Jaeger|Testcontainers|pytest|k6">
       <div>
         <div class="project-number">01</div>
         <h3 class="project-title">Chartwise: AI Clinical Documentation Pipeline</h3>
       </div>
       <p class="project-desc">A clinician uploads a visit transcript. Chartwise pulls the patient's history from a FHIR server, has an LLM draft a SOAP note, safety-checks the draft, and queues it for review. The approved note is saved back to the patient's record, and every view, edit, and approval is audited. All patient data is synthetic, generated with Synthea.</p>
+      <div class="pipeline">
+        <div class="pipeline-hint">click a stage to see how it handles failure</div>
+        <ol class="pipeline-stages">
+          <li><button class="stage" type="button" data-stage="upload" aria-controls="stage-upload" aria-pressed="true"><span class="stage-tech">Java</span><span class="stage-name">Upload</span></button></li>
+          <li><button class="stage" type="button" data-stage="kafka" aria-controls="stage-kafka" aria-pressed="false"><span class="stage-tech">Kafka</span><span class="stage-name">Event bus</span></button></li>
+          <li><button class="stage" type="button" data-stage="worker" aria-controls="stage-worker" aria-pressed="false"><span class="stage-tech">Python</span><span class="stage-name">Note worker</span></button></li>
+          <li><button class="stage" type="button" data-stage="gateway" aria-controls="stage-gateway" aria-pressed="false"><span class="stage-tech">Go</span><span class="stage-name">LLM gateway</span></button></li>
+          <li><button class="stage" type="button" data-stage="safety" aria-controls="stage-safety" aria-pressed="false"><span class="stage-tech">Python</span><span class="stage-name">Safety check</span></button></li>
+          <li><button class="stage" type="button" data-stage="review" aria-controls="stage-review" aria-pressed="false"><span class="stage-tech">React</span><span class="stage-name">Review</span></button></li>
+          <li><button class="stage" type="button" data-stage="filing" aria-controls="stage-filing" aria-pressed="false"><span class="stage-tech">FHIR</span><span class="stage-name">Filing</span></button></li>
+        </ol>
+        <div class="pipeline-detail" id="stage-upload">
+          <div><h4>What it does</h4><p>The Spring Boot encounter service stores the encounter (transcript <strong>AES-256-GCM encrypted</strong>) and an outbox event in <strong>one database transaction</strong>, then returns <code>202 Accepted</code>. A relay publishes the outbox to Kafka.</p></div>
+          <div><h4>When things break</h4><p>The two rows commit or roll back together, so an encounter can never exist without being processed. Intake only writes two rows, so during a simulated LLM outage uploads were still <strong>accepted at full rate</strong>.</p></div>
+        </div>
+        <div class="pipeline-detail" id="stage-kafka" hidden>
+          <div><h4>What it does</h4><p>Carries <code>encounter.created</code>, <code>note.drafted</code> and <code>note.approved</code>, keyed by encounter ID. Events carry <strong>IDs only</strong>: the transcript stays behind an audited API and never enters Kafka.</p></div>
+          <div><h4>When things break</h4><p>Messages that keep failing go to a <strong>dead-letter topic</strong> and become a visible <code>DRAFT_FAILED</code> state an admin can retry, instead of silently disappearing.</p></div>
+        </div>
+        <div class="pipeline-detail" id="stage-worker" hidden>
+          <div><h4>What it does</h4><p>Fetches the visit's draft context (no name or identifiers), drafts several notes concurrently, validates the SOAP structure, and publishes <code>note.drafted</code>.</p></div>
+          <div><h4>When things break</h4><p>Offsets are committed only after Kafka acknowledges the draft, and only up to the first unfinished message per partition. Killing the worker mid-stream across 200 encounters left <strong>0 lost and 0 duplicated</strong> notes.</p></div>
+        </div>
+        <div class="pipeline-detail" id="stage-gateway" hidden>
+          <div><h4>What it does</h4><p>The only path to the LLM: <strong>Redis token-bucket</strong> rate limiting, retries with jittered backoff, and a <strong>circuit breaker</strong> in front of the Claude API, served over gRPC.</p></div>
+          <div><h4>When things break</h4><p>The gateway fails fast while the worker waits patiently. In a simulated 60-second provider outage the breaker opened in <strong>8s</strong>, the backlog peaked at 153 and drained after recovery, and <strong>0 drafts failed</strong>.</p></div>
+        </div>
+        <div class="pipeline-detail" id="stage-safety" hidden>
+          <div><h4>What it does</h4><p>Flags medications in the draft that appear in neither the patient's record nor the transcript, and drugs started despite a recorded allergy (penicillin allergy → amoxicillin).</p></div>
+          <div><h4>What it catches</h4><p>Caught <strong>100% of 500 injected errors</strong> with <strong>0 false positives</strong> on 400 clean drafts. The limits are measured too: injected drugs come from its own drug list, and doses aren't checked.</p></div>
+        </div>
+        <div class="pipeline-detail" id="stage-review" hidden>
+          <div><h4>What it does</h4><p>Shows the transcript and draft side by side. Every save is a <strong>new version</strong>, with a diff against the original AI draft.</p></div>
+          <div><h4>Guardrails</h4><p>Only clinicians can approve, and only the version they are looking at. Every view, edit, and approval goes to an <strong>append-only audit log</strong>, enforced by a Postgres trigger.</p></div>
+        </div>
+        <div class="pipeline-detail" id="stage-filing" hidden>
+          <div><h4>What it does</h4><p>The approved note is written to the patient's record on a HAPI FHIR server as a <code>DocumentReference</code>, and the encounter becomes <code>FILED</code>.</p></div>
+          <div><h4>When things break</h4><p>A FHIR write can't join a database transaction, so filing does an <strong>idempotent conditional create</strong> keyed by encounter ID first, then marks the encounter filed. A retry can't file the note twice.</p></div>
+        </div>
+      </div>
       <div class="project-stack">
         <span class="stack-pill">Java</span>
         <span class="stack-pill">Spring Boot</span>
@@ -490,7 +651,7 @@
       </div>
     </div>
 
-    <div class="project-card fade-in">
+    <div class="project-card fade-in" data-tech="Go|Docker">
       <div>
         <div class="project-number">02</div>
         <h3 class="project-title">batchserve: Dynamic Batching Inference Server</h3>
@@ -510,7 +671,7 @@
       </div>
     </div>
 
-    <div class="project-card fade-in">
+    <div class="project-card fade-in" data-tech="JavaScript|Python|React|FastAPI|Claude API|AWS Lambda|DynamoDB|AWS Cognito|pytest">
       <div>
         <div class="project-number">03</div>
         <h3 class="project-title">AI Symptom Checker (Full-Stack)</h3>
@@ -532,10 +693,11 @@
       </ul>
       <div class="project-links">
         <a href="https://symptom-checker-frontend-nine.vercel.app/" class="project-link" target="_blank" rel="noopener">live demo ↗</a>
+        <a href="https://github.com/Rybro63/ai-symptom-checker" class="project-link" target="_blank" rel="noopener">github.com/Rybro63/ai-symptom-checker ↗</a>
       </div>
     </div>
 
-    <div class="project-card fade-in">
+    <div class="project-card fade-in" data-tech="Python|FastAPI|Scikit-Learn|pytest">
       <div>
         <div class="project-number">04</div>
         <h3 class="project-title">Sentiment Analysis REST API</h3>
@@ -553,7 +715,9 @@
         <li>CI-style Render pipeline for <strong>automated model retraining</strong> on every deploy, plus an interactive demo UI served from the API</li>
       </ul>
       <div class="project-links">
-        <a href="https://sentiment-api-dayn.onrender.com" class="project-link" target="_blank" rel="noopener">sentiment-api-dayn.onrender.com ↗</a>
+        <a href="https://github.com/Rybro63/sentiment--api" class="project-link" target="_blank" rel="noopener">github.com/Rybro63/sentiment--api ↗</a>
+        <a href="https://sentiment-api-dayn.onrender.com" class="project-link" target="_blank" rel="noopener">live demo ↗</a>
+        <span class="project-link-note">The demo is on a free host that sleeps when idle, so the first load can take up to a minute.</span>
       </div>
     </div>
 
@@ -640,6 +804,10 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
         GitHub
       </a>
+      <a href="resume.pdf" target="_blank" rel="noopener" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6M8 13h8M8 17h5"/></svg>
+        Resume
+      </a>
       <a href="tel:7706177730" class="contact-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.22 1.18 2 2 0 012.22 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.08 6.08l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
         770-617-7730
@@ -662,6 +830,55 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.12 });
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks = document.querySelector('.nav-links');
+function setNav(open) {
+  navLinks.classList.toggle('open', open);
+  navToggle.setAttribute('aria-expanded', open);
+  navToggle.textContent = open ? 'close' : 'menu';
+}
+navToggle.addEventListener('click', () => setNav(!navLinks.classList.contains('open')));
+navLinks.addEventListener('click', (e) => { if (e.target.closest('a')) setNav(false); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setNav(false); });
+
+// Skills that a project lists in data-tech become buttons that filter the projects
+const cards = document.querySelectorAll('.project-card[data-tech]');
+const filterBar = document.querySelector('.project-filter');
+function filterProjects(tech) {
+  cards.forEach(card => {
+    const uses = tech !== null && card.dataset.tech.split('|').includes(tech);
+    card.classList.toggle('match', uses);
+    card.classList.toggle('dimmed', tech !== null && !uses);
+  });
+  filterBar.hidden = tech === null;
+  if (tech !== null) filterBar.querySelector('.project-filter-name').textContent = tech;
+}
+const usedTech = new Set([...cards].flatMap(card => card.dataset.tech.split('|')));
+document.querySelectorAll('#skills .tag').forEach(tag => {
+  const tech = tag.textContent.trim();
+  if (!usedTech.has(tech)) return;
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'tag';
+  btn.textContent = tech;
+  btn.addEventListener('click', () => {
+    filterProjects(tech);
+    document.getElementById('projects').scrollIntoView();
+  });
+  tag.replaceWith(btn);
+});
+document.querySelector('.skills-hint').hidden = false;
+filterBar.querySelector('.project-filter-clear').addEventListener('click', () => filterProjects(null));
+
+const stages = document.querySelectorAll('.stage');
+stages.forEach(btn => btn.addEventListener('click', () => {
+  stages.forEach(b => {
+    const active = b === btn;
+    b.setAttribute('aria-pressed', active);
+    document.getElementById(b.getAttribute('aria-controls')).hidden = !active;
+  });
+}));
 </script>
 </body>
 </html>
