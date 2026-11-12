@@ -308,7 +308,7 @@
     width: 11px; height: 11px; border-radius: 50%;
     background: var(--win); border: 1px solid var(--accent);
   }
-  .job-dot--now { background: var(--accent); }
+  .job-dot--now { background: var(--accent); } /* most recent entry; no pulse, since nothing is current */
   .job-date { font-size: 12px; color: var(--amber); }
   .job-role { margin: 4px 0 0; font-size: 15px; font-weight: 400; }
   .job-role .at { color: var(--muted); }
@@ -622,15 +622,15 @@
         <h2 class="section-title" id="experience-title" tabindex="-1">Experience</h2>
         <ol class="timeline stagger">
           <li class="job">
-            <span class="job-dot job-dot--now live" aria-hidden="true"></span>
-            <div class="job-date">Aug 2024 – now</div>
-            <h3 class="job-role">Desk Assistant <span class="at">@</span> <span class="org">Reed Hall, UGA</span></h3>
+            <span class="job-dot job-dot--now" aria-hidden="true"></span>
+            <div class="job-date">Aug 2024 – May 2025</div>
+            <h3 class="job-role">Undergraduate Researcher <span class="at">@</span> <span class="org">VIPR AI/ML &amp; Robotics Lab, UGA</span></h3>
+            <p class="job-desc">Object detection for farm robots. Benchmarked YOLOv5 through YOLOv12 across five model sizes; reached 98.4% mAP50 with YOLOv12x.</p>
           </li>
           <li class="job">
             <span class="job-dot" aria-hidden="true"></span>
             <div class="job-date">Aug 2024 – May 2025</div>
-            <h3 class="job-role">Undergraduate Researcher <span class="at">@</span> <span class="org">VIPR AI/ML &amp; Robotics Lab, UGA</span></h3>
-            <p class="job-desc">Object detection for farm robots. Benchmarked YOLOv5 through YOLOv12 across five model sizes; reached 98.4% mAP50 with YOLOv12x.</p>
+            <h3 class="job-role">Desk Assistant <span class="at">@</span> <span class="org">Reed Hall, UGA</span></h3>
           </li>
           <li class="job">
             <span class="job-dot" aria-hidden="true"></span>
